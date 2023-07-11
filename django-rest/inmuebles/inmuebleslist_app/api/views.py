@@ -1,4 +1,4 @@
-from inmuebleslist_app.api.pagination import InmueblePagination
+from inmuebleslist_app.api.pagination import InmueblePagination, InmuebleLOPagination
 from inmuebleslist_app.api.serializers import InmuebleSerializer, EmpresaSerializer, ComentarioSerializer
 from inmuebleslist_app.models import Inmueble, Empresa, Comentario
 from rest_framework.response import Response
@@ -197,7 +197,7 @@ class InmuebleList(generics.ListAPIView):
     serializer_class = InmuebleSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['direccion', 'empresa__nombre']
-    pagination_class = InmueblePagination
+    pagination_class = InmueblePagination #InmuebleLOPagination
 
 class InmuebleListAV(APIView):
     
