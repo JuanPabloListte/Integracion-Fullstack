@@ -13,6 +13,13 @@ from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, Scoped
 from inmuebleslist_app.api.throttling import ComentarioCreateThrottle, ComentarioListThrottle
 
 
+class UsuarioComentario(generics.ListAPIView):
+    serializer_class = ComentarioSerializer
+    
+    def get_queryset(self):
+        username = self.request.query_params.get('username', None)
+        return Comentario.objects.filter(comentario_user__username=username)
+
 class ComentarioList(generics.ListCreateAPIView):
     throttle_classes = [ComentarioListThrottle, AnonRateThrottle]
     #queryset = Comentario.objects.all()
