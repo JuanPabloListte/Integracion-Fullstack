@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from inmuebleslist_app.api.permissions import IsAdminOrReadOnly, IsComentarioUserOrReadOnly
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
 from inmuebleslist_app.api.throttling import ComentarioCreateThrottle, ComentarioListThrottle
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 class UsuarioComentario(generics.ListAPIView):
     serializer_class = ComentarioSerializer
@@ -24,7 +24,9 @@ class ComentarioList(generics.ListCreateAPIView):
     throttle_classes = [ComentarioListThrottle, AnonRateThrottle]
     #queryset = Comentario.objects.all()
     serializer_class = ComentarioSerializer
-    #permission_classes = [IsAuthenticated]   
+    #permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['comentario_user__username', 'active']
      
     def get_queryset(self):
         pk = self.kwargs['pk']
