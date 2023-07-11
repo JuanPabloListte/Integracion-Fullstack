@@ -14,6 +14,8 @@ class InmuebleSerializer(serializers.ModelSerializer):
     
     comentarios = ComentarioSerializer(many=True, read_only=True)
     
+    empresa_nombre = serializers.CharField(source='empresa.nombre')
+    
     class Meta:
         model = Inmueble
         fields = "__all__"
