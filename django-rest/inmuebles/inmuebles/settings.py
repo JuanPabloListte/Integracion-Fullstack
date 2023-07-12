@@ -75,6 +75,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'inmuebles.wsgi.application'
 
+AUTH_USER_MODEL = 'user_app.Account'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

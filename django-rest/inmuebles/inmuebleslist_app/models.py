@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator as min, MaxValueValidator as max
+from user_app.models import Account
 
 class Empresa(models.Model):
     nombre = models.CharField(max_length=250)
@@ -29,7 +29,7 @@ class Inmueble(models.Model):
     
     
 class Comentario(models.Model):
-    comentario_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comentario_user = models.ForeignKey(Account, on_delete=models.CASCADE)
     calificacion = models.PositiveIntegerField(validators=[min(1), max(5)])
     texto = models.CharField(max_length=250, null=True)
     inmueble = models.ForeignKey(Inmueble, on_delete=models.CASCADE, related_name='comentarios')
