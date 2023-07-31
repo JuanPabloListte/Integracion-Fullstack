@@ -24,9 +24,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'error': 'El email del ususario ya existe'})
         
         #account = Account(email=self.validated_data['email'], username=self.validated_data['username'])
-        account = Account.object.create_user(first_name=self.validated_data['first_name'],
+        account = Account.objects.create_user(first_name=self.validated_data['first_name'],
                                             last_name=self.validated_data['last_name'],
-                                            emai=self.validated_data['email'],
+                                            email=self.validated_data['email'],
                                             username=self.validated_data['username'],
                                             password=self.validated_data['password'])
         account.phone_number = self.validated_data['phone_number']

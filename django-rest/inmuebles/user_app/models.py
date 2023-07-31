@@ -44,7 +44,7 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=254, unique=True)
-    phone_numbre = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=50)
     
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now_add=True)
@@ -56,7 +56,7 @@ class Account(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
     
-    object = MyAccountManager()
+    objects = MyAccountManager()
     
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
