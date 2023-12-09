@@ -1,0 +1,2 @@
+release: python manage.py maigrate
+web: gunicorn inmuebles.wsgi
